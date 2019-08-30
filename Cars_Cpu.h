@@ -21,7 +21,6 @@ public:
 
     Cars_Cpu();
 
-
     Cars_Cpu(Collision &collision);
 
     A_Star a_star;
@@ -39,6 +38,8 @@ public:
     int getPosition(int giri, int &position);
 
     const int getVector_position(int i);
+
+    void CreateCpu(Collision C_collision[]);
 
     int carNumber, vector_position[5];
 
@@ -62,7 +63,6 @@ private:
 
     Clock C_Step[5], clockCollision[5];
     Time time_Step[5], timeCollision[5];
-
 
 };
 

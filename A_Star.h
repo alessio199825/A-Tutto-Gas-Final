@@ -47,8 +47,6 @@ private:
     bool ChangeStart[7];
     bool done[7];
 
-
-
 };
 
 

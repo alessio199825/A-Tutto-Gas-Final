@@ -5,7 +5,9 @@
 #include "Cars_Cpu.h"
 #include "Load_Exception.h"
 
-Cars_Cpu::Cars_Cpu() {}
+Cars_Cpu::Cars_Cpu() {
+
+}
 
 Cars_Cpu::Cars_Cpu(Collision &collision)
 {
@@ -68,7 +70,6 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
 
     switch(circuit){
         case 1:
-
 
             for(int i=0; i<5; i++){
                 degreeCPU[i] = 0;
@@ -175,8 +176,7 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
 
 }
 
-void Cars_Cpu::moveCar() {        //gestire bene setCar e move Car che forse fanno la stessa cosa
-
+void Cars_Cpu::moveCar() {
 
     Cpucollision->set_sCarCpu(S_Box1, S_Box2);
 
@@ -418,7 +418,6 @@ void Cars_Cpu::moveCar() {        //gestire bene setCar e move Car che forse fan
 
 void Cars_Cpu::setPos() {
 
-
     if(index!=posCar.size()) {
         S_CpuCar[0].setPosition(posCar[index++]);
     }
@@ -443,7 +442,6 @@ const vector<Vector2f> &Cars_Cpu::getPosCar() const {
 void Cars_Cpu::setCircuit(int circuit) {
     Cars_Cpu::circuit = circuit;
 }
-
 
 int Cars_Cpu::getPosition(int giri, int &position) {
 
@@ -521,6 +519,48 @@ const int Cars_Cpu::getVector_position(int i) {
     return vector_position[i];
 }
 
+void Cars_Cpu::CreateCpu(Collision C_collision[]) {
+
+    Texture T_Boxx1, T_Boxx2;
+    Sprite S_Car1Boxx1[1], S_Car1Boxx2[1];
+    Sprite S_Car2Boxx1[1], S_Car2Boxx2[1];
+
+    for(int i=0; i<2; i++) {
+
+        if (!C_collision[i].CreateTextureAndBitmask(T_Boxx1, "Control/neroT.png")) {
+            std::cout << "error" << std::endl;
+        }
+
+        if (!C_collision[i].CreateTextureAndBitmask(T_Boxx2, "Control/bianco.png")) {
+            std::cout << "error" << std::endl;
+        }
+    }
+
+    S_Car1Boxx1[0].setTexture(T_Boxx1);
+    S_Car1Boxx1[0].setOrigin(36, 8.5);
+    S_Car1Boxx1[0].setRotation(90);
+
+    S_Car1Boxx2[0].setTexture(T_Boxx2);
+    S_Car1Boxx2[0].setOrigin(36, 8.5);
+    S_Car1Boxx2[0].setRotation(90);
+
+    S_Car2Boxx1[0].setTexture(T_Boxx1);
+    S_Car2Boxx1[0].setOrigin(36, 8.5);
+    S_Car2Boxx1[0].setRotation(90);
+
+    S_Car2Boxx2[0].setTexture(T_Boxx2);
+    S_Car2Boxx2[0].setOrigin(36, 8.5);
+    S_Car2Boxx2[0].setRotation(90);
 
 
+    S_Car1Boxx1[0].setPosition(Vector2f(102, 116));
+    S_Car1Boxx2[0].setPosition(Vector2f(102, 116));
 
+    S_Car2Boxx1[0].setPosition(Vector2f(100, 150));
+    S_Car2Boxx2[0].setPosition(Vector2f(100, 150));
+
+
+    C_collision[0].set_sCarCpu(S_Car1Boxx1, S_Car1Boxx2);
+    C_collision[1].set_sCarCpu(S_Car2Boxx1, S_Car2Boxx2);
+
+}

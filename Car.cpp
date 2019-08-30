@@ -24,6 +24,7 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
             if (!T_MachinePlayer.loadFromFile("race/macchina1.png")) {
                 throw Load_exception("Load_exception:Impossibile caricare file");
             }
+
             break;
             case 2:
             if (!T_MachinePlayer.loadFromFile("race/macchina6.png")) {
@@ -105,6 +106,7 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
                 default:
                     break;
             }
+            break;
         default:break;
     }
 
@@ -365,5 +367,37 @@ int Car::getPos() const {
     return pos;
 }
 
+void Car::CreateMachine(Collision C_collision[]) {
+
+    Texture T_Boxx1, T_Boxx2;
+    Sprite S_Boxx1[2], S_Boxx2[2];
+
+    for(int i=0; i<2; i++) {
+        if (!C_collision[i].CreateTextureAndBitmask(T_Boxx1, "Control/neroT.png")) {
+            std::cout << "error" << std::endl;
+        }
+
+        if (!C_collision[i].CreateTextureAndBitmask(T_Boxx2, "Control/bianco.png")) {
+            std::cout << "error" << std::endl;
+        }
+
+        S_Boxx1[i].setTexture(T_Boxx1);
+        S_Boxx1[i].setOrigin(36, 8.5);
+        S_Boxx1[i].setRotation(static_cast<float>(90));
+
+        S_Boxx2[i].setTexture(T_Boxx2);
+        S_Boxx2[i].setOrigin(36, 8.5);
+        S_Boxx2[i].setRotation(static_cast<float>(90));
+    }
+
+    S_Boxx1[0].setPosition(Vector2f(100, 150));
+    S_Boxx1[1].setPosition(Vector2f(100, 150));
+    S_Boxx2[0].setPosition(Vector2f(102, 116));
+    S_Boxx2[1].setPosition(Vector2f(102, 116));
+
+    for(int i=0; i<2; i++) {
+        C_collision[i].setSCar(S_Boxx1[i], S_Boxx2[i]);
+    }
+}
 
 

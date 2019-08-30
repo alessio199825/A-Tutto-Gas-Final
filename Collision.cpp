@@ -6,8 +6,6 @@
 
 Collision::Collision() {}
 
-
-
 void Collision::setSCar(Sprite &sBox1, Sprite &sBox2) {
     S_CarBox1 = sBox1;
     S_CarBox2 = sBox2;

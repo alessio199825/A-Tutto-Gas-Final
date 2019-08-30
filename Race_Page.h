@@ -24,7 +24,6 @@
 using namespace sf;
 using namespace std;
 
-
 class Race_Page : public Menu_State{
 
 public:
@@ -56,8 +55,6 @@ public:
     double posx, posy;
 
     int chooseCar;
-
-
 
 private:
 

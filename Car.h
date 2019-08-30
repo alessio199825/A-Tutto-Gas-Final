@@ -32,6 +32,8 @@ public:
     float getX_CarPlayer() const;
     bool End_Race(int giri, int &position, int circuitrace);
 
+    void CreateMachine(Collision C_collision[]);
+
     int getPos() const;
 
     float y_CarPlayer, x_CarPlayer;
@@ -54,7 +56,6 @@ private:
     void Do_Reverse_Out();
     void Turn_Right();
     void Turn_Left();
-
 
 };
 

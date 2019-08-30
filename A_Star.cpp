@@ -15,6 +15,7 @@ A_Star::A_Star(){
 };
 
 int A_Star::astar(int machine, int circuit) {
+
     if (!done[machine]) {
 
         if (ChangeStart[machine]) {
@@ -217,6 +218,7 @@ int A_Star::astar(int machine, int circuit) {
 
         AStarSearch<MapSearchNode> astarsearch;
 
+
         unsigned int SearchCount = 0;
 
         const unsigned int NumSearches = 1;
@@ -227,7 +229,6 @@ int A_Star::astar(int machine, int circuit) {
             MapSearchNode nodeStart;
             nodeStart.x = x_start[vector_start[machine]];
             nodeStart.y = y_start[vector_start[machine]];
-
             // Define the goal state
 
             nodeEnd.x = x_end[vector_end[machine]];

@@ -15,6 +15,7 @@
 class Collision {
 
 public:
+
     Collision();
 
     bool Cpu_Menagement(int CpuCar);
