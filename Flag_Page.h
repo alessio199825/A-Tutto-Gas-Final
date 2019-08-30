@@ -19,7 +19,7 @@ class Flag_Page : public Menu_State {
 
 public:
 
-     Flag_Page(RenderWindow &window, Error &error, int Type_race, int chooseCar, int numcircuit, int position_car, int position_cpu[5]);
+     Flag_Page(RenderWindow &window, Error &error, int Type_race, int chooseCar, int numcircuit, int position_car, int position_cpu[5], int end_race);
 
     ~Flag_Page();
 
@@ -40,6 +40,8 @@ private:
     int y_flag[7];
 
     int Race_type, choosecar, CircuitNum;
+
+    bool end_game;
 
 };
 

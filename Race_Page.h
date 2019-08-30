@@ -67,7 +67,7 @@ private:
     int circuitrace;
     bool control_setRace=true;
     int meteo, giri;
-    bool flag=false;
+    bool flag=false, end_race;
     float Cpu_degree[5];
     int X_CpuCar[5], Y_CpuCar[5];
     int position;

@@ -18,6 +18,7 @@ Race_Page::Race_Page(RenderWindow &window, Error &error, int num_circuit, int Ra
     position=1;
     car= Car(collision);
     cars_cpu=Cars_Cpu(collision);
+    end_race = false;
 }
 
 Race_Page::~Race_Page() = default;
@@ -129,6 +130,7 @@ int Race_Page::getActivities(Event event, RenderWindow &window) {
                             pageChanged = true;
                             song.stop_Race();
                             song.Music_RadioPause(true);
+                            end_race = true;
                         }
                         break;
                     case 2:
@@ -138,6 +140,7 @@ int Race_Page::getActivities(Event event, RenderWindow &window) {
                             pageChanged = true;
                             song.stop_Race();
                             song.Music_RadioPause(true);
+                            end_race = true;
                         }
                         break;
                     case 3:
@@ -147,6 +150,7 @@ int Race_Page::getActivities(Event event, RenderWindow &window) {
                             pageChanged = true;
                             song.stop_Race();
                             song.Music_RadioPause(true);
+                            end_race = true;
                         }
                         break;
                     default:
@@ -172,7 +176,7 @@ Menu_State *Race_Page::getNewPage(RenderWindow &window, Error &error) {
         case 0:
             return new Menu_Game(window, error);
         case 9:
-            return new Flag_Page(window, error, Type_race, chooseCar, circuitrace, position_car, &position_cpu[0]);
+            return new Flag_Page(window, error, Type_race, chooseCar, circuitrace, position_car, &position_cpu[0], end_race);
         default:
             return 0;
     }

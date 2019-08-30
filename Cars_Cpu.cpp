@@ -132,7 +132,7 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
     for(int i=0; i<5; i++){
 
         S_CpuCar[i].setTexture(T_CpuCar[i]);
-        S_CpuCar[i].setOrigin(9.5, 0);
+        S_CpuCar[i].setOrigin(9.5, 8);
         S_CpuCar[i].setRotation(constDegree + degreeCPU[i]);
         S_CpuCar[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
 

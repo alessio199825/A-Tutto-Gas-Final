@@ -67,17 +67,17 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
         case 2:
             switch (circuitrace) {
                 case 1:
-                    x_CarPlayer = 160;
-                    y_CarPlayer = 312;
+                    x_CarPlayer = 162;
+                    y_CarPlayer = 548;
                     degreeConst = 180;
                     break;
                 case 2:
-                    x_CarPlayer = 462;
+                    x_CarPlayer = 222;
                     y_CarPlayer = 36;
                     degreeConst = 270;
                     break;
                 case 3:
-                    x_CarPlayer = 532;
+                    x_CarPlayer = 772;
                     y_CarPlayer = 512;
                     degreeConst = 90;
                     break;
@@ -219,7 +219,7 @@ void Car::Do_Reverse() {      //retromarcia
 void Car::Accelerate() { //accelerazione seguendo con freno motore
     if (Keyboard::isKeyPressed(Keyboard::Up)) {
         start=1;
-        if (CarPlayer_Acc < 2) {
+        if (CarPlayer_Acc < 0.5) {
             CarPlayer_Acc = CarPlayer_Acc + const_Acc;
         }
         x_CarPlayer = static_cast<float>(x_CarPlayer + CarPlayer_Acc * cos(((degree_CarPlayer + degreeConst + 90) * M_PI) / 180));

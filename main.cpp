@@ -10,7 +10,6 @@
 
 int main() {
 
-    //Menu ml
     Menu_Loop menu_Loop;
     Error error;
     menu_Loop.generateWindow(error);

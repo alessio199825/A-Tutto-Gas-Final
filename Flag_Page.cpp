@@ -7,7 +7,7 @@
 #include "Menu_Game.h"
 #include "Load_Page.h"
 
-Flag_Page::Flag_Page(RenderWindow &window, Error &error, int Type_race, int chooseCar, int numcircuit, int position_car, int position_cpu[5]) {
+Flag_Page::Flag_Page(RenderWindow &window, Error &error, int Type_race, int chooseCar, int numcircuit, int position_car, int position_cpu[5], int end_race) {
     posizione_macchina = position_car;
     for(int i = 0; i<5; i++){
         posizione_pc[i] = position_cpu[i];
@@ -16,6 +16,7 @@ Flag_Page::Flag_Page(RenderWindow &window, Error &error, int Type_race, int choo
     CircuitNum=numcircuit;
     Race_type=Type_race;
     choosecar = chooseCar;
+    end_game = end_race;
 }
 
 Flag_Page::~Flag_Page() = default;
@@ -68,6 +69,16 @@ int Flag_Page::getActivities(Event event, RenderWindow &window) {
 }
 
 void Flag_Page::setWindow(Error &error, RenderWindow &window) {
+
+    if(end_game == 0){
+        posizione_macchina = 6;
+        posizione_pc[0] = 1;
+        posizione_pc[1] = 2;
+        posizione_pc[2] = 3;
+        posizione_pc[3] = 4;
+        posizione_pc[4] = 5;
+
+    }
 
     switch(posizione_macchina){
         case 1:
@@ -191,7 +202,7 @@ Menu_State *Flag_Page::getNewPage(RenderWindow &window, Error &error) {     //pu
         case 9:
                 CircuitNum++;
                 if(CircuitNum==4)
-                    return new Flag_Page(window, error, Race_type, choosecar, CircuitNum, posizione_macchina, &posizione_pc[0]);
+                    return new Flag_Page(window, error, Race_type, choosecar, CircuitNum, posizione_macchina, &posizione_pc[0], end_game);
                 if(CircuitNum>4)
                     return new Menu_Game(window, error);
 
