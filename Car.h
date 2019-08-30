@@ -41,7 +41,7 @@ private:
 
     Collision *Carcollision;
     int start, Reverse, lap=0, intermediate=0, pos;
-    float CarPlayer_Acc= 0.5, const_Acc=0.01, const_Brake=0.05;
+    float CarPlayer_Acc= 0.31, const_Acc=0.01, const_Brake=0.03;
     double degreeConst, degree_CarPlayer;
     bool done=false, controlCollision=false, controlCollision1=false;
     Sprite S_MachinePlayer, S_Box1, S_Box2;

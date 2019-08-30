@@ -26,12 +26,15 @@ public:
 
     void setControl_light(bool control_light);
 
+    int getTime_light() const;
+
 private:
     Texture T_Light[7];
     Sprite S_Light[7];
     Clock light_clock;
     Time light_time;
     bool control_light=true, control_trafficlight;
+    int time_light;
 };
 
 

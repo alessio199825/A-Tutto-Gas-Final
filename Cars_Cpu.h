@@ -58,6 +58,7 @@ private:
     bool step2[5], controlCollision[5];
     int lap[5];
     int intermediate[5];
+    int time_car[5];
 
     Clock C_Step[5], clockCollision[5];
     Time time_Step[5], timeCollision[5];

@@ -15,6 +15,12 @@ Cars_Cpu::Cars_Cpu(Collision &collision)
         dim_tmp[i] = 0;
         lap[i] = 0;
     }
+    time_car[0] = 30;
+    time_car[1] = 35;
+    time_car[2] = 40;
+    time_car[3] = 45;
+    time_car[4] = 50;
+
     Cpucollision=&collision;
 }
 
@@ -231,7 +237,7 @@ void Cars_Cpu::moveCar() {        //gestire bene setCar e move Car che forse fan
                 time_Step[carNumber] = C_Step[carNumber].getElapsedTime();
 
                 if (time_Step[carNumber].asMilliseconds() >
-                    30) {          // aggiorna la posizione della macchina ogni TOT millisecondi
+                    time_car[carNumber]) {          // aggiorna la posizione della macchina ogni TOT millisecondi
 
 
                     if (Y_CPU[step[carNumber]][carNumber] < Y_CPU[step[carNumber] - 1][carNumber] &&

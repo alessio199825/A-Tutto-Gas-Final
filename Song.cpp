@@ -171,7 +171,7 @@ void Song::Music_Radio(RenderWindow &window, Error &error) {
 
     srand(static_cast<unsigned int>(time(NULL)));                  //potrebbe essere utile richiamarlo solo una volta e inibirne il funzionamento
     timeRadio = clockRadio.getElapsedTime();
-    if (timeRadio.asSeconds() > 15) {
+    if (timeRadio.asSeconds() > 25) {
         SelectRadio = (rand() % 19) + 1;
         try {
 

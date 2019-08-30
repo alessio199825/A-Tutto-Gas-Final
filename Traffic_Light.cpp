@@ -8,7 +8,6 @@
 Traffic_Light::Traffic_Light() {
 
     control_trafficlight=true;
-
 }
 
 bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) {
@@ -21,6 +20,8 @@ bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) 
         }
 
         light_time = light_clock.getElapsedTime();
+
+        time_light = light_time.asSeconds();
 
         if (light_time.asSeconds() > 16) {
             song.setTraffic_light(false);
@@ -80,13 +81,15 @@ bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) 
 
             }
 
+
             catch (Load_exception e) {
                 window.close();
                 error.Check_Image(window);
             }
+        }
 
-            if(light_time.asSeconds() > 9)
-                song.music_TrafficLight(window, error);
+        if(light_time.asSeconds() > 9) {
+            song.music_TrafficLight(window, error);
         }
 
         if (light_time.asSeconds() < 8 )
@@ -118,3 +121,8 @@ bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) 
 void Traffic_Light::setControl_light(bool control_light) {
     Traffic_Light::control_light = control_light;
 }
+
+int Traffic_Light::getTime_light() const {
+    return time_light;
+}
+
