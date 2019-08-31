@@ -18,10 +18,10 @@ Cars_Cpu::Cars_Cpu(Collision &collision)
         lap[i] = 0;
     }
     time_car[0] = 30;
-    time_car[1] = 35;
-    time_car[2] = 40;
-    time_car[3] = 45;
-    time_car[4] = 50;
+    time_car[1] = 33;
+    time_car[2] = 36;
+    time_car[3] = 39;
+    time_car[4] = 42;
 
     Cpucollision=&collision;
 }
@@ -144,12 +144,12 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
         S_CpuCar[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
 
         S_Box1[i].setTexture(T_Box1);
-        S_Box1[i].setOrigin(36, 8.5);
+        S_Box1[i].setOrigin(28, 8.5);
         S_Box1[i].setRotation(constDegree + degreeCPU[i] - 90);
         S_Box1[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
 
         S_Box2[i].setTexture(T_Box2);
-        S_Box2[i].setOrigin(36, 8.5);
+        S_Box2[i].setOrigin(28, 8.5);
         S_Box2[i].setRotation(constDegree + degreeCPU[i] - 90);
         S_Box2[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
 

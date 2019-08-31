@@ -90,17 +90,14 @@ void Race_Page::draw(RenderWindow &window) {
     }
 
         weath.setWeather(meteo, window, error);
-
-        if (Type_race == 2 || Type_race == 1) {
-            if(traffic_light.getTime_light() > 9){
-                song.MusicTime(car, window, error, circuitrace);
-            }
-            song.Music_Radio(window, error);
-        }
-        else
-        {
+        if(traffic_light.getTime_light() > 9){
             song.MusicTime(car, window, error, circuitrace);
         }
+
+       /* if (Type_race == 2 || Type_race == 1) {
+
+            song.Music_Radio(window, error);
+        }*/
 
         if (flag) {
             pageIndex = 9;
