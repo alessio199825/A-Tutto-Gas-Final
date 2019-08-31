@@ -50,24 +50,24 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
         error.Check_Image(window);
     }
 
-    if(Type_race==1)
+    if(Type_race==1)                                // Gestisco la modalità carriera nello stesso modo di gara singola
         Type_race=2;
 
     S_MachinePlayer.setTexture(T_MachinePlayer);
     S_MachinePlayer.setOrigin(9.5, 0);
 
-    S_Box1.setTexture(T_Box1);
+    S_Box1.setTexture(T_Box1);                      // viene settata la maschera1 per gestire le collisioni
     S_Box1.setOrigin(36, 8.5);
 
-    S_Box2.setTexture(T_Box2);
+    S_Box2.setTexture(T_Box2);                      // viene settata la maschera2 per gestire le collisioni
     S_Box2.setOrigin(36, 8.5);
 
     degree_CarPlayer=0;
 
     switch(Type_race) {
-        case 2:
+        case 2:                                 // caso carriera e gara singola
             switch (circuitrace) {
-                case 1:
+                case 1:                         // a seconda del circuito assegno posizione iniziale e angolo
                     x_CarPlayer = 162;
                     y_CarPlayer = 548;
                     degreeConst = 180;
@@ -86,9 +86,9 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
                     break;
             }
             break;
-        case 3:
+        case 3:                                 // Getisco modalità allenamento
             switch (circuitrace) {
-                case 1:
+                case 1:                         // a seconda del circuito assegno posizione iniziale e angolo
                     x_CarPlayer = 105;
                     y_CarPlayer = 302;
                     degreeConst = 180;
@@ -114,10 +114,10 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
     S_MachinePlayer.setRotation(static_cast<float>(degree_CarPlayer + degreeConst));
 
     S_Box1.setPosition(Vector2f(x_CarPlayer, y_CarPlayer));
-    S_Box1.setRotation(static_cast<float>(degree_CarPlayer + degreeConst -90));
+    S_Box1.setRotation(static_cast<float>(degree_CarPlayer + degreeConst - 90));
 
     S_Box2.setPosition(Vector2f(x_CarPlayer, y_CarPlayer));
-    S_Box2.setRotation(static_cast<float>(degree_CarPlayer + degreeConst -90));
+    S_Box2.setRotation(static_cast<float>(degree_CarPlayer + degreeConst - 90));
 
     window.draw(S_MachinePlayer);
 }
@@ -134,19 +134,19 @@ void Car::Car_Player_Movement(RenderWindow &window, Error &error, int circuitrac
     if(!controlCollision) {
 
         switch (control.SetControl(window, error, circuitrace, y_CarPlayer, x_CarPlayer, degree_CarPlayer)) {
-            case 0:
+            case 0:                     // gestione metodi nel caso sia all'interno della pista
                 Accelerate();
                 Turn_Right();
                 Turn_Left();
                 Reverse = 0;
                 break;
-            case 1:
+            case 1:                     // gestione metodi nel caso sia sull'erba, sulla sabbia o nei box
                 Accelerate_Out();
                 Turn_Right();
                 Turn_Left();
                 Reverse = 1;
                 break;
-            case 2:
+            case 2:                     // gestione metodi nel caso sia di fronte a un ostacolo
                 Do_Reverse();
                 Reverse = 2;
                 break;
@@ -159,7 +159,7 @@ void Car::Car_Player_Movement(RenderWindow &window, Error &error, int circuitrac
     }
 
     if (Reverse == 0 || Reverse == 1)
-    switch (control.SetControlReverse(circuitrace, y_CarPlayer, x_CarPlayer)){
+    switch (control.SetControlReverse(circuitrace, y_CarPlayer, x_CarPlayer)){      //gestione dei con trolli nel caso eca fuori pista in retromarcia
         case 0:
             Do_Reverse();
             break;
@@ -175,7 +175,7 @@ void Car::Car_Player_Movement(RenderWindow &window, Error &error, int circuitrac
 
     timeCollision = clockCollision.getElapsedTime();
 
-    if(timeCollision.asSeconds()>0.3){
+    if(timeCollision.asSeconds()>0.3){          // tempo dopo il quale la macchina riparte successivamente ad una collisione
         controlCollision=false;
     }
 
@@ -190,7 +190,7 @@ void Car::Car_Player_Movement(RenderWindow &window, Error &error, int circuitrac
     S_Box2.setRotation(static_cast<float>(degree_CarPlayer + degreeConst -90));
 
 }
-void Car::Do_Reverse() {      //retromarcia
+void Car::Do_Reverse() {      // gestione del metodo per la retromarcia
 
     if (Keyboard::isKeyPressed(Keyboard::Down)) {
 
@@ -218,7 +218,7 @@ void Car::Do_Reverse() {      //retromarcia
     }
 }
 
-void Car::Accelerate() { //accelerazione seguendo con freno motore
+void Car::Accelerate() { // gestione del metodo per l'accelerazione
     if (Keyboard::isKeyPressed(Keyboard::Up)) {
         start=1;
         if (CarPlayer_Acc < 0.31) {
@@ -228,7 +228,7 @@ void Car::Accelerate() { //accelerazione seguendo con freno motore
         y_CarPlayer= static_cast<float>(y_CarPlayer + CarPlayer_Acc * sin(((degree_CarPlayer + degreeConst + 90) * M_PI) / 180));
 
     }
-    else {
+    else {                                                  // nel caso venga rilasciato l'accelleratore entra in gioco il freno motore che fa fermare la macchina dopo tot pixel
         if (0 < CarPlayer_Acc && start == 1) {
             CarPlayer_Acc = CarPlayer_Acc - const_Brake;
             x_CarPlayer = static_cast<float>(x_CarPlayer +
@@ -241,15 +241,15 @@ void Car::Accelerate() { //accelerazione seguendo con freno motore
 
 void Car::Turn_Right() {
     if (Keyboard::isKeyPressed(Keyboard::Right))     //incrementa l'angolo verso destra
-        degree_CarPlayer = degree_CarPlayer + 1;
+        degree_CarPlayer = degree_CarPlayer + 0.5;
 }
 
 void Car::Turn_Left() {
     if (Keyboard::isKeyPressed(Keyboard::Left))      //decrementa l'angolo verso sinistra
-        degree_CarPlayer = degree_CarPlayer - 1;
+        degree_CarPlayer = degree_CarPlayer - 0.5;
 }
 
-void Car::Accelerate_Out() {
+void Car::Accelerate_Out() {                        //gestione del metodo per l'accellerazione fuori pista o nei box
     if (Keyboard::isKeyPressed(Keyboard::Up))
     {
         start=1;
@@ -265,7 +265,7 @@ void Car::Accelerate_Out() {
         }
     }
 }
-void Car::Do_Reverse_Out() {
+void Car::Do_Reverse_Out() {                        //gestione del metodo per la retromarcia fuori pista o nei box
     if (Keyboard::isKeyPressed(Keyboard::Down))
     {
         x_CarPlayer = static_cast<float>(x_CarPlayer - 0.1 * cos(((degree_CarPlayer + degreeConst + 90) * M_PI) / 180));
@@ -273,17 +273,17 @@ void Car::Do_Reverse_Out() {
     }
 }
 
-float Car::getY_CarPlayer() const {
+float Car::getY_CarPlayer() const {                 // metodo che ritorna la coordinata Y della posizione della macchina
     return y_CarPlayer;
 }
 
-float Car::getX_CarPlayer() const {
+float Car::getX_CarPlayer() const {                 // metodo che ritorna la coordinata X della posizione della macchina
     return x_CarPlayer;
 }
 
-bool Car::End_Race(int giri, int &position, int circuitrace) {
-    if(giri != 3 && giri != 5 && giri != 10){
-        giri = 3;
+bool Car::End_Race(int giri, int &position, int circuitrace) {  // metodo che gestisce il numero di giri effettuati dalla macchina
+if(giri != 3 && giri != 5 && giri != 10){                       // il controllo della correttezza nell'esecuzione del giro
+        giri = 3;                                               // è effettuato tramite l'inserimento di un passaggio intermedio obbligatorio
     }
 switch(circuitrace) {
     case 1:
@@ -363,11 +363,11 @@ switch(circuitrace) {
     return false;
 }
 
-int Car::getPos() const {
+int Car::getPos() const {                           // metodo che ritorna la posizione in classifica della macchina
     return pos;
 }
 
-void Car::CreateMachine(Collision C_collision[]) {
+void Car::CreateMachine(Collision C_collision[]) {      // metodo per la gestione delle collisioni macchina utente
 
     Texture T_Boxx1, T_Boxx2;
     Sprite S_Boxx1[2], S_Boxx2[2];

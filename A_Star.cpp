@@ -16,11 +16,11 @@ A_Star::A_Star(){
 
 int A_Star::astar(int machine, int circuit) {
 
-    if (!done[machine]) {
+    if (!done[machine]) {                       // controllo sull'assegnazione dei nodi per l'esecuzione di A_star
 
         if (ChangeStart[machine]) {
-            switch(circuit) {
-                case 1:
+            switch(circuit) {                   // assegnazione del nodo di partenza per A_star a seconda del circuito
+                case 1:                         // e della corrispondente macchina del computer
                 switch (machine) {
                     case 0:
                         x_start[0] = 222;
@@ -47,7 +47,7 @@ int A_Star::astar(int machine, int circuit) {
                 }
 
 
-                x_end[1] = 382;
+                x_end[1] = 382;                         // assegnazione di tutti i way_point a seconda del cricuito
                 y_end[1] = 68;
 
                 x_end[2] = 942;
@@ -227,16 +227,16 @@ int A_Star::astar(int machine, int circuit) {
 
             // Create a start state
             MapSearchNode nodeStart;
-            nodeStart.x = x_start[vector_start[machine]];
+            nodeStart.x = x_start[vector_start[machine]];               // inizializzazione nodo di partenza
             nodeStart.y = y_start[vector_start[machine]];
             // Define the goal state
 
-            nodeEnd.x = x_end[vector_end[machine]];
+            nodeEnd.x = x_end[vector_end[machine]];                     // inizializzazione nodo di arrivo
             nodeEnd.y = y_end[vector_end[machine]];
 
             // Set Start and goal states
 
-            astarsearch.SetStartAndGoalStates(nodeStart, nodeEnd);
+            astarsearch.SetStartAndGoalStates(nodeStart, nodeEnd);      // chiamata all'algoritmo che elabora il percorso
 
             unsigned int SearchState;
             unsigned int SearchSteps = 0;
@@ -395,16 +395,15 @@ int A_Star::astar(int machine, int circuit) {
     }
 
 
-int A_Star::getX_trajectory(int i, int machine) {
-
+int A_Star::getX_trajectory(int i, int machine) {               // metodo che ritorna la coordinata X della specifica macchina
     return x_trajectory[i][machine];
 }
 
-int A_Star::getY_trajectory(int i, int machine) {
+int A_Star::getY_trajectory(int i, int machine) {               // metodo che ritorna la coordinata Y della specifica macchina
     return y_trajectory[i][machine];
 }
 
-int A_Star::getTrajectory_dim(int machine) const {
+int A_Star::getTrajectory_dim(int machine) const {              // metodo che ritorna la dimensione del percorso effettuato da una specifica macchina
     return trajectory_dim[machine];
 }
 
