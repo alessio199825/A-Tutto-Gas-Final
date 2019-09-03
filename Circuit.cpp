@@ -3,7 +3,7 @@
 
 Circuit::Circuit() = default;
 
-void Circuit::setTileMaps(int circuitrace, Error &error, RenderWindow &window, int Type_race) {
+void Circuit::setTileMaps(int circuitrace, Error &error, RenderWindow &window, int Type_race) {             //metodo che carica le texture dei circuiti
 
     try {
 
@@ -55,10 +55,10 @@ void Circuit::setTileMaps(int circuitrace, Error &error, RenderWindow &window, i
 
 Circuit::~Circuit() = default;
 
-const Sprite Circuit::getS_tilemaps() const {
+const Sprite Circuit::getS_tilemaps() const {           //ritorna il circuito selezionato
     return S_tilemaps;
 }
 
-const Sprite Circuit::getS_Pause(int i) const {
+const Sprite Circuit::getS_Pause(int i) const {         //ritorna la sprirte del tasto di pausa presente durante la gara
     return S_Pause[i];
 }

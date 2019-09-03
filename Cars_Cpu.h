@@ -45,21 +45,23 @@ public:
 
 private:
 
+    void Start_PC();
+    void Draw_PC(RenderWindow &window);
+    void Restart_Lap();
+
     Collision *Cpucollision;
-    int x_cpu[5], y_cpu[5];
-    int circuit;
+
+    int x_cpu[5], y_cpu[5], dim_trajectory[5], dim_tmp[5], step[5], X_CPU[300][5], Y_CPU[300][5], lap[5], time_car[5], intermediate[5];
+    int circuit, index=0, i=0;
+
+    bool step2[5], controlCollision[5];
+
     float degreeCPU[5], constDegree;
+
     Texture T_CpuCar[5], T_Box1, T_Box2;
     Sprite S_CpuCar[5], S_Box1[5], S_Box2[5];
+
     vector<Vector2f> posCar;
-    int dim_trajectory[5], dim_tmp[5], step[5];
-    int index=0, i=0;
-    int X_CPU[300][5];
-    int Y_CPU[300][5];
-    bool step2[5], controlCollision[5];
-    int lap[5];
-    int intermediate[5];
-    int time_car[5];
 
     Clock C_Step[5], clockCollision[5];
     Time time_Step[5], timeCollision[5];

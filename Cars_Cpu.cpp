@@ -5,9 +5,7 @@
 #include "Cars_Cpu.h"
 #include "Load_Exception.h"
 
-Cars_Cpu::Cars_Cpu() {
-
-}
+Cars_Cpu::Cars_Cpu() = default;
 
 Cars_Cpu::Cars_Cpu(Collision &collision)
 {
@@ -17,7 +15,7 @@ Cars_Cpu::Cars_Cpu(Collision &collision)
         dim_tmp[i] = 0;
         lap[i] = 0;
     }
-    time_car[0] = 30;
+    time_car[0] = 30;               // Tempo in millisecondi dopo il quale le macchine del PC effettuano uno spostamento
     time_car[1] = 33;
     time_car[2] = 36;
     time_car[3] = 39;
@@ -26,7 +24,7 @@ Cars_Cpu::Cars_Cpu(Collision &collision)
     Cpucollision=&collision;
 }
 
-bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
+bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {                  // metodo che carica le Texture delle macchine del PC
 
     if(i==0) {
         try {
@@ -68,100 +66,16 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
 
     constDegree=180;
 
-    switch(circuit){
-        case 1:
+    Start_PC();         // chiamata al metodo che assegna la posizione di partenza alle machine del PC
 
-            for(int i=0; i<5; i++){
-                degreeCPU[i] = 0;
-            }
+    Draw_PC(window);    // chiamata al metodo che disegna inizialmente le macchine del PC sulla griglia di partenza
 
-            x_cpu[0]=222;
-            y_cpu[0]=348;
-
-            x_cpu[1]=162;
-            y_cpu[1]=388;
-
-            x_cpu[2]=222;
-            y_cpu[2]=428;
-
-            x_cpu[3]=162;
-            y_cpu[3]=468;
-
-            x_cpu[4]=222;
-            y_cpu[4]=508;
-
-            break;
-        case 2:
-
-            for(int i=0; i<5; i++){
-                degreeCPU[i] = 90;
-            }
-
-            x_cpu[0] = 422;
-            y_cpu[0] = 76;
-
-            x_cpu[1] = 382;
-            y_cpu[1] = 36;
-
-            x_cpu[2] = 342;
-            y_cpu[2] = 76;
-
-            x_cpu[3] = 302;
-            y_cpu[3] = 36;
-
-            x_cpu[4] = 262;
-            y_cpu[4] = 76;
-
-           break;
-        case 3:
-            for(int i=0; i<5; i++){
-                degreeCPU[i] = 270;
-            }
-            x_cpu[0]=572;
-            y_cpu[0]=552;
-
-            x_cpu[1]=612;
-            y_cpu[1]=512;
-
-            x_cpu[2]=652;
-            y_cpu[2]=552;
-
-            x_cpu[3]=692;
-            y_cpu[3]=512;
-
-            x_cpu[4]=732;
-            y_cpu[4]=552;
-
-           break;
-       default:break;
-    }
-
-    for(int i=0; i<5; i++){
-
-        S_CpuCar[i].setTexture(T_CpuCar[i]);
-        S_CpuCar[i].setOrigin(9.5, 8);
-        S_CpuCar[i].setRotation(constDegree + degreeCPU[i]);
-        S_CpuCar[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
-
-        S_Box1[i].setTexture(T_Box1);
-        S_Box1[i].setOrigin(28, 8.5);
-        S_Box1[i].setRotation(constDegree + degreeCPU[i] - 90);
-        S_Box1[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
-
-        S_Box2[i].setTexture(T_Box2);
-        S_Box2[i].setOrigin(28, 8.5);
-        S_Box2[i].setRotation(constDegree + degreeCPU[i] - 90);
-        S_Box2[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
-
-        window.draw(S_CpuCar[i]);
-    }
-
-    for(carNumber=0; carNumber<5; carNumber++) {
+    for(carNumber=0; carNumber<5; carNumber++) {                                // Chiamata ad A_Star e gestione della dimensione della traiettoria in pixel di ogni macchina del PC
         a_star.astar(carNumber, circuit);
         dim_trajectory[carNumber] = a_star.getTrajectory_dim(carNumber);
     }
-    for(carNumber=0; carNumber<5; carNumber++) {
 
+    for(carNumber=0; carNumber<5; carNumber++) {
         for (int i = dim_tmp[carNumber]; i < dim_trajectory[carNumber]; i++) {
 
             X_CPU[i][carNumber] = a_star.getX_trajectory(i, carNumber);
@@ -176,49 +90,11 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {
 
 }
 
-void Cars_Cpu::moveCar() {
+void Cars_Cpu::moveCar() {                      // Metodo che gestisce lo spostamento delle macchine dopo aver ottenuto i valori delle posizioni da A_Star
 
     Cpucollision->set_sCarCpu(S_Box1, S_Box2);
 
-    switch(circuit) {
-        case 1:
-            if (step[0] == 176)
-                step[0] = 24;
-            if (step[1] == 181)
-                step[1] = 27;
-            if (step[2] == 180)
-                step[2] = 27;
-            if (step[3] == 185)
-                step[3] = 32;
-            if (step[4] == 184)
-                step[4] = 31;
-            break;
-        case 2:
-            if (step[0] == 222)
-                step[0] = 30;
-            if (step[1] == 226)
-                step[1] = 34;
-            if (step[2] == 226)
-                step[2] = 34;
-            if (step[3] == 230)
-                step[3] = 38;
-            if (step[4] == 230)
-                step[4] = 38;
-            break;
-        case 3:
-            if (step[0] == 254)
-                step[0] = 32;
-            if (step[1] == 254)
-                step[1] = 34;
-            if (step[2] == 258)
-                step[2] = 36;
-            if (step[3] == 258)
-                step[3] = 36;
-            if (step[4] == 262)
-                step[4] = 38;
-            break;
-        default: break;
-    }
+    Restart_Lap();
 
     for (carNumber = 0; carNumber < 5; carNumber++) {
 
@@ -409,7 +285,7 @@ void Cars_Cpu::moveCar() {
 
         timeCollision[carNumber] = clockCollision[carNumber].getElapsedTime();
 
-        if(timeCollision[carNumber].asSeconds()>0.3){
+        if(timeCollision[carNumber].asSeconds()>0.3){               // Tempo successivamente al quale una macchina che si blocca per una collisione riparte
         controlCollision[carNumber]=false;
         }
     }
@@ -426,10 +302,11 @@ void Cars_Cpu::setPos() {
 
 void Cars_Cpu::setCar(int x,int y) {
 
-    posCar.emplace_back(x,y);       //    posCar.push_back(Vector2f(x,y));
+    posCar.emplace_back(x,y);
+    //posCar.push_back(Vector2f(x,y));
 }
 
-void Cars_Cpu::drawCpu(RenderWindow &window) {
+void Cars_Cpu::drawCpu(RenderWindow &window) {             // Metodo che disegna le macchine del PC dopo la partenza
     for(int i=0; i<5; i++) {
         window.draw(S_CpuCar[i]);
     }
@@ -439,11 +316,11 @@ const vector<Vector2f> &Cars_Cpu::getPosCar() const {
     return posCar;
 }
 
-void Cars_Cpu::setCircuit(int circuit) {
+void Cars_Cpu::setCircuit(int circuit) {                    // Metodo che setta il circuito nel quale ci troviamo
     Cars_Cpu::circuit = circuit;
 }
 
-int Cars_Cpu::getPosition(int giri, int &position) {
+int Cars_Cpu::getPosition(int giri, int &position) {        // Metodo per gestire la posizione in classifica di ogni macchinina
 
     if(giri != 3 && giri != 5 && giri != 10){
         giri = 3;
@@ -562,5 +439,145 @@ void Cars_Cpu::CreateCpu(Collision C_collision[]) {
 
     C_collision[0].set_sCarCpu(S_Car1Boxx1, S_Car1Boxx2);
     C_collision[1].set_sCarCpu(S_Car2Boxx1, S_Car2Boxx2);
+
+}
+
+void Cars_Cpu::Start_PC() {
+
+    switch(circuit){                    // metodo di assegnazione della
+        case 1:
+
+            for(int i=0; i<5; i++){
+                degreeCPU[i] = 0;
+            }
+
+            x_cpu[0]=222;
+            y_cpu[0]=348;
+
+            x_cpu[1]=162;
+            y_cpu[1]=388;
+
+            x_cpu[2]=222;
+            y_cpu[2]=428;
+
+            x_cpu[3]=162;
+            y_cpu[3]=468;
+
+            x_cpu[4]=222;
+            y_cpu[4]=508;
+
+            break;
+        case 2:
+
+            for(int i=0; i<5; i++){
+                degreeCPU[i] = 90;
+            }
+
+            x_cpu[0] = 422;
+            y_cpu[0] = 76;
+
+            x_cpu[1] = 382;
+            y_cpu[1] = 36;
+
+            x_cpu[2] = 342;
+            y_cpu[2] = 76;
+
+            x_cpu[3] = 302;
+            y_cpu[3] = 36;
+
+            x_cpu[4] = 262;
+            y_cpu[4] = 76;
+
+            break;
+        case 3:
+            for(int i=0; i<5; i++){
+                degreeCPU[i] = 270;
+            }
+            x_cpu[0]=572;
+            y_cpu[0]=552;
+
+            x_cpu[1]=612;
+            y_cpu[1]=512;
+
+            x_cpu[2]=652;
+            y_cpu[2]=552;
+
+            x_cpu[3]=692;
+            y_cpu[3]=512;
+
+            x_cpu[4]=732;
+            y_cpu[4]=552;
+
+            break;
+        default:break;
+    }
+
+}
+
+void Cars_Cpu::Draw_PC(RenderWindow &window) {
+
+    for(int i=0; i<5; i++){
+
+        S_CpuCar[i].setTexture(T_CpuCar[i]);
+        S_CpuCar[i].setOrigin(9.5, 8);
+        S_CpuCar[i].setRotation(constDegree + degreeCPU[i]);
+        S_CpuCar[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
+
+        S_Box1[i].setTexture(T_Box1);
+        S_Box1[i].setOrigin(28, 8.5);
+        S_Box1[i].setRotation(constDegree + degreeCPU[i] - 90);
+        S_Box1[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
+
+        S_Box2[i].setTexture(T_Box2);
+        S_Box2[i].setOrigin(28, 8.5);
+        S_Box2[i].setRotation(constDegree + degreeCPU[i] - 90);
+        S_Box2[i].setPosition(Vector2f(x_cpu[i], y_cpu[i]));
+
+        window.draw(S_CpuCar[i]);
+    }
+
+}
+
+void Cars_Cpu::Restart_Lap() {
+
+    switch(circuit) {
+        case 1:
+            if (step[0] == 176)
+                step[0] = 24;
+            if (step[1] == 181)
+                step[1] = 27;
+            if (step[2] == 180)
+                step[2] = 27;
+            if (step[3] == 185)
+                step[3] = 32;
+            if (step[4] == 184)
+                step[4] = 31;
+            break;
+        case 2:
+            if (step[0] == 222)
+                step[0] = 30;
+            if (step[1] == 226)
+                step[1] = 34;
+            if (step[2] == 226)
+                step[2] = 34;
+            if (step[3] == 230)
+                step[3] = 38;
+            if (step[4] == 230)
+                step[4] = 38;
+            break;
+        case 3:
+            if (step[0] == 254)
+                step[0] = 32;
+            if (step[1] == 254)
+                step[1] = 34;
+            if (step[2] == 258)
+                step[2] = 36;
+            if (step[3] == 258)
+                step[3] = 36;
+            if (step[4] == 262)
+                step[4] = 38;
+            break;
+        default: break;
+    }
 
 }

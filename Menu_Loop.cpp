@@ -4,7 +4,7 @@
 
 #include "Menu_Loop.h"
 
-Menu_Loop::Menu_Loop() {
+Menu_Loop::Menu_Loop() {                   // Metodo che crea la finestra di Gioco
 
     window.create(VideoMode(1000,600), "All'ultimo gas");
 }

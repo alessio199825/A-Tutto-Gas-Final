@@ -21,7 +21,7 @@ Load_Page::Load_Page(RenderWindow &window, Error &error, int circuitrace, int Ty
 
 Load_Page::~Load_Page() = default;
 
-void Load_Page::draw(RenderWindow &window) {
+void Load_Page::draw(RenderWindow &window) {            // metodo che disegna il plaisfero e la macchina che scorre per eseguire una sorta di barra di stato
 
     if(x_Tyre<800) {
         x_Tyre = static_cast<float>(x_Tyre + 0.25);

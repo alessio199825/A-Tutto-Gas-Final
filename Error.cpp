@@ -1,7 +1,7 @@
 #include "Error.h"
 
 
-void Error::Check_Image(RenderWindow &window) {
+void Error::Check_Image(RenderWindow &window) {         // metodo che carica la texture relativa alla gestione delle eccezioni
 
     window_error.create(VideoMode(500, 300), "Errore"); //creazione di un pop-up che avverte di un problema nel caricamento di un immagine
     while (window_error.isOpen()) {

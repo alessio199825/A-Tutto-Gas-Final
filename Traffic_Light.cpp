@@ -10,7 +10,7 @@ Traffic_Light::Traffic_Light() {
     control_trafficlight=true;
 }
 
-bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) {
+bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) {                //Gestione delle varie Texture riguardanti il semaforo
 
     if(Type_race==2 || Type_race==1) {
 
@@ -87,6 +87,8 @@ bool Traffic_Light::Light_On(RenderWindow &window, Error &error, int Type_race) 
                 error.Check_Image(window);
             }
         }
+
+        // In base al tempo vengono disegnate le correte texture del semaforo per eseguire una sorta di transizione
 
         if(light_time.asSeconds() > 9) {
             song.music_TrafficLight(window, error);

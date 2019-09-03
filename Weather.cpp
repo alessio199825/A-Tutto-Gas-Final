@@ -12,7 +12,7 @@ Weather::Weather() {
 
 }
 
-void Weather::setWeather(int meteo, RenderWindow &window, Error &error) {
+void Weather::setWeather(int meteo, RenderWindow &window, Error &error) {           //metodo che setta il meteo in base ale scelte dell'utente
     switch (meteo) {
         case 1:
             do_Rain(window, error);
@@ -23,7 +23,7 @@ void Weather::setWeather(int meteo, RenderWindow &window, Error &error) {
     }
 }
 
-void Weather::do_Rain(RenderWindow &window, Error &error) {
+void Weather::do_Rain(RenderWindow &window, Error &error) {             // Metodo che gestisce la pioggia tramite transizione di texture
 
     if(control_rain) {
         try {
@@ -55,7 +55,7 @@ void Weather::do_Rain(RenderWindow &window, Error &error) {
     window.draw(S_rain[2]);
 }
 
-void Weather::do_Sun(RenderWindow &window, Error &error) {
+void Weather::do_Sun(RenderWindow &window, Error &error) {          // Metodo che gestisce il sole tramite transizione di texture
 
     if(control_sun) {
         try {

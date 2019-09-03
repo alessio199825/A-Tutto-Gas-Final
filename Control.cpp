@@ -9,6 +9,8 @@ Control::Control() = default;
 
 int Control::SetControl(RenderWindow &window, Error &error, int num_circuit, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer) {
 
+    //Metodo che richiama ricorsivamente lo specifico metodo per i controlli a seconda del circuito nel quale ci troviamo
+
     switch (num_circuit) {
 
         case 1:
@@ -27,6 +29,14 @@ int Control::SetControl(RenderWindow &window, Error &error, int num_circuit, flo
 }
 
 int Control::CircuitOne(RenderWindow &window, Error &error, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer) {
+
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// ROSSO -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
 
     x_CarPlayer= static_cast<float>(x_CarPlayer + 38 * sin((degree_CarPlayer * M_PI) / 180));
     y_CarPlayer= static_cast<float>(y_CarPlayer - 38 * cos((degree_CarPlayer * M_PI) / 180));
@@ -59,6 +69,14 @@ int Control::CircuitOne(RenderWindow &window, Error &error, float y_CarPlayer, f
 
 int Control::CircuitTwo(RenderWindow &window, Error &error, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer) {
 
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// ROSSO -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
+
     x_CarPlayer= static_cast<float>(x_CarPlayer + 38 * cos((degree_CarPlayer * M_PI) / 180));
     y_CarPlayer= static_cast<float>(y_CarPlayer + 38 * sin((degree_CarPlayer * M_PI) / 180));
 
@@ -88,6 +106,14 @@ int Control::CircuitTwo(RenderWindow &window, Error &error, float y_CarPlayer, f
 }
 
 int Control::CircuitThree(RenderWindow &window, Error &error, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer) {
+
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// ROSSO -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
 
     x_CarPlayer= static_cast<float>(x_CarPlayer - 38 * cos((degree_CarPlayer * M_PI) / 180));
     y_CarPlayer= static_cast<float>(y_CarPlayer - 38 * sin((degree_CarPlayer * M_PI) / 180));
@@ -121,6 +147,8 @@ int Control::CircuitThree(RenderWindow &window, Error &error, float y_CarPlayer,
 
 int Control::SetControlReverse(int numcircuit, float y_CarPlayer, float x_CarPlayer) {
 
+    //Metodo che richiama ricorsivamente lo specifico metodo per i controlli sulla retromarcia a seconda del circuito nel quale ci troviamo
+
     switch(numcircuit) {
 
         case 1:
@@ -138,6 +166,14 @@ int Control::SetControlReverse(int numcircuit, float y_CarPlayer, float x_CarPla
 
 int Control::CircuitOneReverse(float y_CarPlayer, float x_CarPlayer) {
 
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// ROSSO -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
+
     red=circuit_one.getPixel(100,230);
     black=circuit_one.getPixel(290,220);
     color=circuit_one.getPixel(static_cast<unsigned int>(x_CarPlayer), static_cast<unsigned int>(y_CarPlayer));
@@ -153,6 +189,14 @@ int Control::CircuitOneReverse(float y_CarPlayer, float x_CarPlayer) {
 
 int Control::CircuitTwoReverse(float y_CarPlayer, float x_CarPlayer) {
 
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// ROSSO -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
+
     red=circuit_two.getPixel(947,51);
     black=circuit_two.getPixel(1,1);
     color=circuit_two.getPixel(static_cast<unsigned int>(x_CarPlayer), static_cast<unsigned int>(y_CarPlayer));
@@ -167,6 +211,14 @@ int Control::CircuitTwoReverse(float y_CarPlayer, float x_CarPlayer) {
 }
 
 int Control::CircuitThreeReverse(float y_CarPlayer, float x_CarPlayer) {
+
+    // Metodo che attraverso una bitmap colorata gestisce i controlli sulla velocità della macchina dell'utente
+
+    //// BIANCO -> velocità NORMALE
+
+    //// VERDE -> la velocità viene DIMINUITA (casi: fuori pista su erba o sabbia, pitlane)
+
+    //// NERO -> la velocità si AZZERA istantaneamente (caso: ci troviamo di fronte ad un ostacolo come muro, gomme, tribune)
 
     color=circuit_three.getPixel(static_cast<unsigned int>(x_CarPlayer), static_cast<unsigned int>(y_CarPlayer));
 

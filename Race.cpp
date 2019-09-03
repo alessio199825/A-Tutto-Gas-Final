@@ -6,6 +6,8 @@ Race::Race() = default;
 
 void Race::setGame(RenderWindow &window, Circuit &circuit, Car &car, Error &error, int Type_race, int circuitrace, int chooseCar) {
 
+    // Metodo che gestisce la macchina dell'utente e i circuiti prima della partenza
+
     circuit.setTileMaps(circuitrace, error, window, Type_race);
 
     car.setMachinePlayer(window, circuitrace, error, Type_race, chooseCar);
@@ -15,8 +17,9 @@ void Race::setGame(RenderWindow &window, Circuit &circuit, Car &car, Error &erro
 
 }
 
-void Race::KeyBreak(RenderWindow &window, Error &error, Song &song, double &posx, double &posy, int &pageIndex,
-                    bool &pageChanged) {       //tasto che richiama la finestra di pausa
+void Race::KeyBreak(RenderWindow &window, Error &error, Song &song, double &posx, double &posy, int &pageIndex, bool &pageChanged) {
+
+    //tasto che richiama la finestra di pausa
 
         if(Mouse::isButtonPressed(Mouse::Left) ) {
             if (Mouse::getPosition(window).x  > 874 && Mouse::getPosition(window).x  < 978
@@ -31,7 +34,10 @@ void Race::KeyBreak(RenderWindow &window, Error &error, Song &song, double &posx
         }
 }
 
-int Race::Break(RenderWindow &window, Error &error, Song &song) {        //crea la finestra di pausa
+int Race::Break(RenderWindow &window, Error &error, Song &song) {
+
+    //crea la finestra di pausa
+
     while(loop==0) {
         window_Break.create(VideoMode(500, 300), "Pause");
                 while (window_Break.isOpen()) {

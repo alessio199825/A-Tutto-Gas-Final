@@ -81,7 +81,7 @@ Menu_State *LoadMenu_Page::getNewPage(RenderWindow &window, Error &error) {
 
 }
 
-void LoadMenu_Page::draw(RenderWindow &window) {
+void LoadMenu_Page::draw(RenderWindow &window) {                // Metodo che disegna la pagina di introduzione al gioco
 
     degree_load=degree_load+0.5;
     S_load[1].setPosition(sf::Vector2f(240, 350));

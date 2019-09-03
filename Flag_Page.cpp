@@ -21,7 +21,7 @@ Flag_Page::Flag_Page(RenderWindow &window, Error &error, int Type_race, int choo
 
 Flag_Page::~Flag_Page() = default;
 
-void Flag_Page::draw(RenderWindow &window) {
+void Flag_Page::draw(RenderWindow &window) {            // Metodo attraverso il quale viene disegnata la bandiera a scacchi e la clasifica di fine gara
 
     for(int i=0; i<9; i++)
         window.draw(S_Flag[i]);
@@ -31,7 +31,7 @@ void Flag_Page::draw(RenderWindow &window) {
 
 }
 
-int Flag_Page::getActivities(Event event, RenderWindow &window) {
+int Flag_Page::getActivities(Event event, RenderWindow &window) {               // metodo che gestisce le varie attività eseguite nel seguente stato
 
     switch (event.type) {
         case Event::KeyReleased:
@@ -68,10 +68,10 @@ int Flag_Page::getActivities(Event event, RenderWindow &window) {
 
 }
 
-void Flag_Page::setWindow(Error &error, RenderWindow &window) {
+void Flag_Page::setWindow(Error &error, RenderWindow &window) {         // Metodo che gestisce la classifica a fine gara
 
-    if(end_game == 0){
-        posizione_macchina = 6;
+    if(end_game == 0){                  // Nel casao in cui l'utente decidesse di anticipare la fine della gara attraverso
+        posizione_macchina = 6;         // il tasto termina, viene stilata in modo arbitrario la classifica
         posizione_pc[0] = 1;
         posizione_pc[1] = 2;
         posizione_pc[2] = 3;
@@ -80,7 +80,7 @@ void Flag_Page::setWindow(Error &error, RenderWindow &window) {
 
     }
 
-    switch(posizione_macchina){
+    switch(posizione_macchina){             // A seconda della posizone finaole della macchina dell'utente viene asssgnata la classifica
         case 1:
             y_flag[5]=120;
             break;
@@ -102,7 +102,7 @@ void Flag_Page::setWindow(Error &error, RenderWindow &window) {
         default:break;
     }
 
-    for(int i=0; i<5; i++){
+    for(int i=0; i<5; i++){             // A seconda della posizone finaole della macchina del PC viene asssgnata la classifica
         switch(posizione_pc[i]){
             case 1:
                 y_flag[i]=120;
@@ -194,7 +194,7 @@ void Flag_Page::setWindow(Error &error, RenderWindow &window) {
 
 }
 
-Menu_State *Flag_Page::getNewPage(RenderWindow &window, Error &error) {     //punto critico per championship
+Menu_State *Flag_Page::getNewPage(RenderWindow &window, Error &error) {     // Viene gestita l'interazione tra i vari stati
 
     switch(pageIndex){
         case 0:

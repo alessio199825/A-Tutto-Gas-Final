@@ -7,7 +7,7 @@
 
 Song::Song() = default;
 
-void Song::music_Load(RenderWindow &window, Error &error) {
+void Song::music_Load(RenderWindow &window, Error &error) {         //Musica per la pagina di introduzione
 
     if (!loadloop) {
         try {
@@ -25,7 +25,7 @@ void Song::music_Load(RenderWindow &window, Error &error) {
     loadloop = true;
 }
 
-void Song::music_Menu(RenderWindow &window, Error &error) {
+void Song::music_Menu(RenderWindow &window, Error &error) {         // Musioca del Menù
 
     if (!menuloop) {
         try {
@@ -43,12 +43,12 @@ void Song::music_Menu(RenderWindow &window, Error &error) {
     music_menu.setLoop(true);
 }
 
-void Song::stop_Menu() {
+void Song::stop_Menu() {                // Stoppa la musica del menù
     music_menu.stop();
     menuloop=false;
 }
 
-void Song::music_Race(RenderWindow &window, Error &error) {
+void Song::music_Race(RenderWindow &window, Error &error) {         // Gestisce la musica all'imnterno della gara
     if (!raceloop) {
         try {
             if (!music_race.openFromFile("Music/musicagara1.ogg"))
@@ -68,12 +68,12 @@ void Song::music_Race(RenderWindow &window, Error &error) {
 
 }
 
-void Song::stop_Race() {
+void Song::stop_Race() {            // chiude la musica della gara a fine modalità
     music_race.stop();
     raceloop = false;
 }
 
-void Song::pause_Race(bool Select_Pause) {
+void Song::pause_Race(bool Select_Pause) {          /7 mette in pausa la musica della gara quando richiesto da altri metodi
     if(Select_Pause)
         music_race.pause();
     if(!Select_Pause)
@@ -81,7 +81,7 @@ void Song::pause_Race(bool Select_Pause) {
 }
 
 
-void Song::music_TrafficLight(RenderWindow &window, Error &error) {
+void Song::music_TrafficLight(RenderWindow &window, Error &error) {             // gestisce la musica del semaforo
     if (!lightloop) {
         try {
             if (!music_trafficlight.openFromFile("Music/semaforosuono.ogg"))
@@ -97,12 +97,12 @@ void Song::music_TrafficLight(RenderWindow &window, Error &error) {
     lightloop = true;
 }
 
-void Song::setLightloop(bool lightloop) {
+void Song::setLightloop(bool lightloop) {               // A seconda del valore che assume attiva o non la musica del semaforo
     Song::lightloop = lightloop;
 }
 
 
-void Song::music_Box(RenderWindow &window, Error &error) {
+void Song::music_Box(RenderWindow &window, Error &error) {          // Gestisce la musica quando ci troviamo all'interno dei box'
     if (!boxloop) {
         try {
             if (!music_box.openFromFile("Music/limitatore.ogg"))
@@ -118,7 +118,7 @@ void Song::music_Box(RenderWindow &window, Error &error) {
     boxloop = true;
 }
 
-void Song::MusicTime(Car &car, RenderWindow &window, Error &error, int num_circuit) {
+void Song::MusicTime(Car &car, RenderWindow &window, Error &error, int num_circuit) {           // A secomda del circuito nel quale ci troviamo chiama la musica dei box o della gara in base alla posizione della macchina dell'utente
     switch(num_circuit){
         case 1:
             if(car.getX_CarPlayer()<137 && car.getY_CarPlayer()>231 && car.getY_CarPlayer()<517) {
@@ -158,7 +158,7 @@ void Song::MusicTime(Car &car, RenderWindow &window, Error &error, int num_circu
     }
 }
 
-void Song::stop_Box() {
+void Song::stop_Box() {         // Quando usciamo dai box spenge il suono del limitatore
     music_box.stop();
     boxloop = false;
 }
@@ -167,7 +167,7 @@ void Song::setTraffic_light(bool traffic_light) {
     Song::traffic_light = traffic_light;
 }
 
-void Song::Music_Radio(RenderWindow &window, Error &error) {
+void Song::Music_Radio(RenderWindow &window, Error &error) {            // Metodo che gestisce in modo casuale i team radio
 
     srand(static_cast<unsigned int>(time(NULL)));                  //potrebbe essere utile richiamarlo solo una volta e inibirne il funzionamento
     timeRadio = clockRadio.getElapsedTime();

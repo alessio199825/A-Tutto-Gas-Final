@@ -6,7 +6,7 @@
 #include <sstream>
 #include "Tilemaps.h"
 
-void Tilemaps::CreateMap() {
+void Tilemaps::CreateMap() {            // Metodo attraverso il quale vengono gestite le varie TileMap richeste per la gestione di A_Star
 
     ifstream OpenFile("Control/circuitNum.txt");
     OpenFile.get(numCircuit);

@@ -25,7 +25,7 @@ Race_Page::~Race_Page() = default;
 
 void Race_Page::draw(RenderWindow &window) {
 
-    switch (Type_race) {
+    switch (Type_race) {                                //Attiva se necessario il semaforo a seconda della modalità di gioco
         case 1:
             traffic_light.setControl_light(false);
             break;
@@ -51,16 +51,16 @@ void Race_Page::draw(RenderWindow &window) {
     }
 
     if (Type_race != 3)
-        window.draw(circuit.getS_Pause(0));
+        window.draw(circuit.getS_Pause(0));         // Disegna il tasto pausa
 
-    window.draw(circuit.getS_Pause(1));
+    window.draw(circuit.getS_Pause(1));             // Disegna il tasto termina
 
     if (traffic_light.Light_On(window, error, Type_race)) {
 
         car.Car_Player_Movement(window, error, circuitrace);
 
-        if (Type_race == 1 || Type_race == 2) {
-
+        if (Type_race == 1 || Type_race == 2) {             // se ci troviamo nella modalità 1 (carriera) o 2 (gara singola)
+                                                            // richiama i metodi per classifica, movimento e disegno macchine PC
             car.End_Race(giri, position, circuitrace);
             cars_cpu.getPosition(giri, position);
 
@@ -75,7 +75,7 @@ void Race_Page::draw(RenderWindow &window) {
             position_cpu[i] = cars_cpu.getVector_position(i);
         }
 
-        if(position == 7){
+        if(position == 7){          // attiva la bandiera a scacchi nel caso tutte le macchine abbiamo eseguito i giri richiesti
             flag = true;
         }
 
@@ -90,14 +90,14 @@ void Race_Page::draw(RenderWindow &window) {
     }
 
         weath.setWeather(meteo, window, error);
+
         if(traffic_light.getTime_light() > 9){
             song.MusicTime(car, window, error, circuitrace);
         }
 
-       /* if (Type_race == 2 || Type_race == 1) {
-
-            song.Music_Radio(window, error);
-        }*/
+        if (Type_race == 3){
+            song.MusicTime(car, window, error, circuitrace);
+        }
 
         if (flag) {
             pageIndex = 9;
@@ -188,7 +188,7 @@ Menu_State *Race_Page::getNewPage(RenderWindow &window, Error &error) {
 
 Race_Page::Race_Page() = default;
 
-void Race_Page::SaveCircuit() {
+void Race_Page::SaveCircuit() {         // Carica da file di testo la bitmap per A_star
 
     ofstream f("Control/circuitNum.txt");
     f<<circuitrace<<endl;

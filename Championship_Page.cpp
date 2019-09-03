@@ -63,29 +63,29 @@ int Championship_Page::getActivities(Event event, RenderWindow &window) {
             break;
         case Event::MouseButtonReleased:
 
-            if (Mouse::getPosition(window).x  > 25 && Mouse::getPosition(window).x  < 125
+            if (Mouse::getPosition(window).x  > 25 && Mouse::getPosition(window).x  < 125           //Tasto Indietro
                 && Mouse::getPosition(window).y > 25 && Mouse::getPosition(window).y < 115) {
                 pageIndex=0;
                 pageChanged=true;
                 return 0;
             }
 
-            if (Mouse::getPosition(window).x > 650 && Mouse::getPosition(window).x < 735 &&
+            if (Mouse::getPosition(window).x > 650 && Mouse::getPosition(window).x < 735 &&         //Macchina n°1
                 Mouse::getPosition(window).y > 270 && Mouse::getPosition(window).y < 452) {
                 chooseCar = 1;
             }
 
-            if (Mouse::getPosition(window).x > 767 && Mouse::getPosition(window).x < 852 &&
+            if (Mouse::getPosition(window).x > 767 && Mouse::getPosition(window).x < 852 &&         //Macchina n°2
                 Mouse::getPosition(window).y > 270 && Mouse::getPosition(window).y < 452) {
                 chooseCar = 2;
             }
 
-            if (Mouse::getPosition(window).x > 885 && Mouse::getPosition(window).x < 970 &&
+            if (Mouse::getPosition(window).x > 885 && Mouse::getPosition(window).x < 970 &&         //Macchina n°3
                 Mouse::getPosition(window).y > 270 && Mouse::getPosition(window).y < 452) {
                 chooseCar = 3;
             }
 
-            if (Mouse::getPosition(window).x  > 650 && Mouse::getPosition(window).x  < 970
+            if (Mouse::getPosition(window).x  > 650 && Mouse::getPosition(window).x  < 970          // Tasto Avanti
                 && Mouse::getPosition(window).y > 485 && Mouse::getPosition(window).y < 555) {
                 pageIndex = 9;
                 pageChanged=true;
@@ -99,7 +99,7 @@ int Championship_Page::getActivities(Event event, RenderWindow &window) {
 }
 
 
-void Championship_Page::setWindow(Error &error, RenderWindow &window) {
+void Championship_Page::setWindow(Error &error, RenderWindow &window) {                 // Metodo che carica le texture dello stato in cui ci troviamo
 
     try {
         if (!T_championship[0].loadFromFile("Championship/90390.jpg")) {
@@ -172,7 +172,7 @@ void Championship_Page::setWindow(Error &error, RenderWindow &window) {
     }
 }
 
-Menu_State *Championship_Page::getNewPage(RenderWindow &window, Error &error) {
+Menu_State *Championship_Page::getNewPage(RenderWindow &window, Error &error) {             // metodo che gestisce il cambiamento di stato
 
     switch(pageIndex){
         case 0:
