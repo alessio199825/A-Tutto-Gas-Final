@@ -65,7 +65,6 @@ void Song::music_Race(RenderWindow &window, Error &error) {         // Gestisce 
     }
     raceloop = true;
     music_race.setLoop(true);
-
 }
 
 void Song::stop_Race() {            // chiude la musica della gara a fine modalità
@@ -73,7 +72,7 @@ void Song::stop_Race() {            // chiude la musica della gara a fine modali
     raceloop = false;
 }
 
-void Song::pause_Race(bool Select_Pause) {          /7 mette in pausa la musica della gara quando richiesto da altri metodi
+void Song::pause_Race(bool Select_Pause) {          // mette in pausa la musica della gara quando richiesto da altri metodi
     if(Select_Pause)
         music_race.pause();
     if(!Select_Pause)

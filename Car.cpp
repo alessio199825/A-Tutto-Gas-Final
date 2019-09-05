@@ -78,7 +78,7 @@ void Car::setMachinePlayer(RenderWindow &window, int circuitrace, Error &error, 
                     degreeConst = 270;
                     break;
                 case 3:
-                    x_CarPlayer = 772;
+                    x_CarPlayer = 777;
                     y_CarPlayer = 512;
                     degreeConst = 90;
                     break;
