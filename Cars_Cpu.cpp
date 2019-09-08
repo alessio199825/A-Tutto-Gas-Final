@@ -429,13 +429,11 @@ void Cars_Cpu::CreateCpu(Collision C_collision[]) {
     S_Car2Boxx2[0].setOrigin(36, 8.5);
     S_Car2Boxx2[0].setRotation(90);
 
-
     S_Car1Boxx1[0].setPosition(Vector2f(102, 116));
     S_Car1Boxx2[0].setPosition(Vector2f(102, 116));
 
-    S_Car2Boxx1[0].setPosition(Vector2f(100, 150));
-    S_Car2Boxx2[0].setPosition(Vector2f(100, 150));
-
+    S_Car2Boxx1[0].setPosition(Vector2f(100, 82));
+    S_Car2Boxx2[0].setPosition(Vector2f(100, 82));
 
     C_collision[0].set_sCarCpu(S_Car1Boxx1, S_Car1Boxx2);
     C_collision[1].set_sCarCpu(S_Car2Boxx1, S_Car2Boxx2);

@@ -232,3 +232,51 @@ int Control::CircuitThreeReverse(float y_CarPlayer, float x_CarPlayer) {
 
     return 0;
 }
+
+int Control::CarControl(int numcircuit) {
+
+    Color C_Red, C_Black, C_Color;
+    Image Circuit_Bit;
+    bool flag=true;
+
+    switch (numcircuit) {
+        case 1:
+            if (!Circuit_Bit.loadFromFile("Control/control1.bmp"))
+                cout<<"error"<<endl;
+            C_Red=Circuit_Bit.getPixel(100,230);
+            C_Black=Circuit_Bit.getPixel(290,220);
+            break;
+        case 2:
+            if (!Circuit_Bit.loadFromFile("Control/control2.bmp"))
+                cout<<"error"<<endl;
+            C_Red=Circuit_Bit.getPixel(947,51);
+            C_Black=Circuit_Bit.getPixel(1,1);
+            break;
+        case 3:
+            if (!Circuit_Bit.loadFromFile("Control/control3.bmp"))
+                cout<<"error"<<endl;
+            flag=false;
+            C_Black=Circuit_Bit.getPixel(5,5);
+            break;
+        default: break;
+    }
+
+    C_Color=Circuit_Bit.getPixel(static_cast<unsigned int>(x_Car), static_cast<unsigned int>(y_Car));
+
+    if(flag) {
+        if (C_Color == C_Red) {
+            return 1;
+        }
+    }
+
+    if(C_Color == C_Black){
+        return 2;
+    }
+
+    return 0;
+}
+
+void Control::setControl(float x, float y) {
+    x_Car=x;
+    y_Car=y;
+}

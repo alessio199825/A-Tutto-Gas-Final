@@ -392,12 +392,25 @@ void Car::CreateMachine(Collision C_collision[]) {      // metodo per la gestion
 
     S_Boxx1[0].setPosition(Vector2f(100, 150));
     S_Boxx1[1].setPosition(Vector2f(100, 150));
-    S_Boxx2[0].setPosition(Vector2f(102, 116));
-    S_Boxx2[1].setPosition(Vector2f(102, 116));
+    S_Boxx2[0].setPosition(Vector2f(100, 48));
+    S_Boxx2[1].setPosition(Vector2f(100, 48));
 
     for(int i=0; i<2; i++) {
         C_collision[i].setSCar(S_Boxx1[i], S_Boxx2[i]);
     }
+}
+
+void Car::CreateMachine1(Control C_control[]) {
+
+    C_control[0].setControl(80, 70);
+
+    C_control[1].setControl(300, 200);
+
+    C_control[2].setControl(60, 530);
+
+    C_control[3].setControl(260, 300);
+
+    C_control[4].setControl(900, 70);
 }
 
 

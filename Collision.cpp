@@ -46,7 +46,6 @@ bool Collision::Cpu_Menagement(int CpuCar) {
             if (PixelPerfectTest(S_CpuBox1[CpuCar], S_CpuBox2[i])) {
                 return true;
             }
-
         }
     }
 

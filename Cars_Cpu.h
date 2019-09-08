@@ -41,6 +41,8 @@ public:
 
     void CreateCpu(Collision C_collision[]);
 
+    void CreateCpu2(Collision C_Collision2);
+
     int carNumber, vector_position[5];
 
 private:

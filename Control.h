@@ -23,11 +23,15 @@ public:
     int SetControl(RenderWindow &window, Error &error, int numcircuit, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer);
     int SetControlReverse(int numcircuit, float y_CarPlayer, float x_CarPlayer);
 
+    int CarControl(int numcircuit);
+    void setControl(float x, float y);
+
 private:
 
     int image1=0, image2=0, image3=0, a=0;
     Image circuit_one, circuit_two, circuit_three;
     Color red, black, green, color;
+    float x_Car, y_Car;
 
     int CircuitOne(RenderWindow &window, Error &error, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer);
     int CircuitTwo(RenderWindow &window, Error &error, float y_CarPlayer, float x_CarPlayer, double degree_CarPlayer);

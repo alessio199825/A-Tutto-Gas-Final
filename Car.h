@@ -33,6 +33,7 @@ public:
     bool End_Race(int giri, int &position, int circuitrace);
 
     void CreateMachine(Collision C_collision[]);
+    void CreateMachine1(Control C_control[]);
 
     int getPos() const;
 

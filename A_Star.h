@@ -39,8 +39,6 @@ public:
     int getTrajectory_dim(int machine) const;
 
 
-
-
     MapSearchNode nodeEnd;
 
 private:
