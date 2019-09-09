@@ -15,6 +15,7 @@ struct B_Test : public testing::Test {
 protected:
     void SetUp() override {
 
+        cout<<"ALIVE"<<endl;
         TestControl[0]=false;
         TestControl[1]=false;
         TestControl[2]=false;
@@ -41,7 +42,7 @@ TEST_F(B_Test, Control_Test) {
 
 
 
-       //######## Test macchina sulla ghiaia sul secondo circuito ########
+        //######## Test macchina sulla ghiaia sul secondo circuito ########
 
     ASSERT_EQ(C_control[2].CarControl(2),true);
 

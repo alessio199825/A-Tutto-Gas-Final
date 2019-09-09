@@ -11,7 +11,7 @@ struct A_Test : public testing::Test {
 
     Collision T_collision[2];
     Car *car;
-    Cars_Cpu* carscpu;
+    Cars_Cpu *carscpu;
 
 protected:
     void SetUp() override {
