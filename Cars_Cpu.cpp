@@ -553,6 +553,7 @@ void Cars_Cpu::Start_PC() {
 
                 lineNode.push_back(Node);
                 Node.clear();
+
             }
 
             mapNode.close();

@@ -406,6 +406,22 @@ int A_Star::getTrajectory_dim(int machine) const {              // metodo che ri
     return trajectory_dim[machine];
 }
 
+int A_Star::getX1()  {
+    return x_start[0];
+}
+
+ int A_Star::getY1() {
+    return y_start[0];
+}
+
+int A_Star::getX2(int i){
+    return x_end[i];
+}
+
+int A_Star::getY2(int i) {
+    return y_end[i];
+}
+
 
 
 
