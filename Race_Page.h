@@ -69,9 +69,8 @@ private:
     int X_CpuCar[5], Y_CpuCar[5];
     int position;
     int position_car, position_cpu[5];
+    int a = 0;
 
-    //int *X_CPU = new int [dim_trajectory];
-    //int *Y_CPU = new int [dim_trajectory];
 
 
 };

@@ -69,8 +69,6 @@ bool Cars_Cpu::createMachine(RenderWindow &window, Error &error) {              
 
     Start_PC();         // chiamata al metodo che assegna la posizione di partenza alle machine del PC
 
-    Draw_PC(window);    // chiamata al metodo che disegna inizialmente le macchine del PC sulla griglia di partenza
-
     for(carNumber=0; carNumber<5; carNumber++) {                                // Chiamata ad A_Star e gestione della dimensione della traiettoria in pixel di ogni macchina del PC
         a_star.astar(carNumber, circuit);
         dim_trajectory[carNumber] = a_star.getTrajectory_dim(carNumber);

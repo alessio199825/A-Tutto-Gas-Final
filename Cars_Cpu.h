@@ -42,12 +42,13 @@ public:
 
     void CreateCpu(Collision C_collision[]);
 
+    void Draw_PC(RenderWindow &window);
+
     int carNumber, vector_position[5];
 
 private:
 
     void Start_PC();
-    void Draw_PC(RenderWindow &window);
     void Restart_Lap();
 
     Collision *Cpucollision;

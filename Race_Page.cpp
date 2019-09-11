@@ -86,8 +86,16 @@ void Race_Page::draw(RenderWindow &window) {
 
         SaveCircuit();
         cars_cpu.setCircuit(circuitrace);
-        cars_cpu.createMachine(window, error);
+
+        if(a <= 15){
+            cars_cpu.createMachine(window, error);
+            a++;
+        }
+
+        cars_cpu.Draw_PC(window);
     }
+
+
 
         weath.setWeather(meteo, window, error);
 
