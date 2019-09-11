@@ -6,6 +6,7 @@
 #define ALL_ULTIMO_GAS_CARS_CPU_H
 
 #include <iostream>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "Error.h"
@@ -65,6 +66,13 @@ private:
 
     Clock C_Step[5], clockCollision[5];
     Time time_Step[5], timeCollision[5];
+
+    fstream mapNode;
+    vector <vector <int>> lineNode;
+    vector<int> Node;
+    string line;
+    int a = 0, count = 0;
+
 
 };
 

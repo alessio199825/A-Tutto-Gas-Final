@@ -2,6 +2,7 @@
 // Created by alessio on 18/12/18.
 //
 
+#include <sstream>
 #include "Cars_Cpu.h"
 #include "Load_Exception.h"
 
@@ -442,28 +443,54 @@ void Cars_Cpu::CreateCpu(Collision C_collision[]) {
 
 void Cars_Cpu::Start_PC() {
 
-    switch(circuit){                    // metodo di assegnazione della
+    switch(circuit){                    // metodo di assegnazione della posizione in griglia delle macchine del PC
         case 1:
 
             for(int i=0; i<5; i++){
                 degreeCPU[i] = 0;
             }
 
-            x_cpu[0]=222;
-            y_cpu[0]=348;
+            mapNode.open("Control/nodiX1.txt");
 
-            x_cpu[1]=162;
-            y_cpu[1]=388;
+            while (getline(mapNode, line) && count <= 4) {
 
-            x_cpu[2]=222;
-            y_cpu[2]=428;
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    x_cpu[count] = a;
+                    count++;
+                }
 
-            x_cpu[3]=162;
-            y_cpu[3]=468;
+                lineNode.push_back(Node);
+                Node.clear();
 
-            x_cpu[4]=222;
-            y_cpu[4]=508;
 
+                cout<<a<<endl;
+
+            }
+
+            mapNode.close();
+
+            a = 0;
+            count = 0;
+
+            mapNode.open("Control/nodiY1.txt");
+
+            while (getline(mapNode, line) && count <= 4) {
+
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    y_cpu[count] = a;
+                    count++;
+                }
+
+                lineNode.push_back(Node);
+                Node.clear();
+
+            }
+
+            mapNode.close();
             break;
         case 2:
 
@@ -471,40 +498,95 @@ void Cars_Cpu::Start_PC() {
                 degreeCPU[i] = 90;
             }
 
-            x_cpu[0] = 422;
-            y_cpu[0] = 76;
+            mapNode.open("Control/nodiX2.txt");
 
-            x_cpu[1] = 382;
-            y_cpu[1] = 36;
+            while (getline(mapNode, line) && count <= 4) {
 
-            x_cpu[2] = 342;
-            y_cpu[2] = 76;
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    x_cpu[count] = a;
+                    count++;
+                }
 
-            x_cpu[3] = 302;
-            y_cpu[3] = 36;
+                lineNode.push_back(Node);
+                Node.clear();
 
-            x_cpu[4] = 262;
-            y_cpu[4] = 76;
+
+                cout<<a<<endl;
+
+            }
+
+            mapNode.close();
+
+            a = 0;
+            count = 0;
+
+            mapNode.open("Control/nodiY2.txt");
+
+            while (getline(mapNode, line) && count <= 4) {
+
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    y_cpu[count] = a;
+                    count++;
+                }
+
+                lineNode.push_back(Node);
+                Node.clear();
+
+            }
+
+            mapNode.close();
 
             break;
         case 3:
             for(int i=0; i<5; i++){
                 degreeCPU[i] = 270;
             }
-            x_cpu[0]=572;
-            y_cpu[0]=552;
 
-            x_cpu[1]=612;
-            y_cpu[1]=512;
+            mapNode.open("Control/nodiX3.txt");
 
-            x_cpu[2]=652;
-            y_cpu[2]=552;
+            while (getline(mapNode, line) && count <= 4) {
 
-            x_cpu[3]=692;
-            y_cpu[3]=512;
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    x_cpu[count] = a;
+                    count++;
+                }
 
-            x_cpu[4]=732;
-            y_cpu[4]=552;
+                lineNode.push_back(Node);
+                Node.clear();
+
+
+                cout<<a<<endl;
+
+            }
+
+            mapNode.close();
+
+            a = 0;
+            count = 0;
+
+            mapNode.open("Control/nodiY3.txt");
+
+            while (getline(mapNode, line) && count <= 4) {
+
+                istringstream iss(line);
+                while (iss >> a) {
+                    Node.push_back(a);
+                    y_cpu[count] = a;
+                    count++;
+                }
+
+                lineNode.push_back(Node);
+                Node.clear();
+
+            }
+
+            mapNode.close();
 
             break;
         default:break;
@@ -538,7 +620,7 @@ void Cars_Cpu::Draw_PC(RenderWindow &window) {
 
 void Cars_Cpu::Restart_Lap() {
 
-    switch(circuit) {
+    switch(circuit) {                   // metodo che controlla quando una macchina del PC ha compiuto tutti gli spostamenti per compiere un giro e riazzera il conteggio
         case 1:
             if (step[0] == 176)
                 step[0] = 24;
