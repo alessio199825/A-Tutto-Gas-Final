@@ -43,6 +43,17 @@ public:
 
 private:
     bool ChangeStart[7];
+
+public:
+    int getX1();
+
+    int getY1();
+
+    int getX2(int i);
+
+    int getY2(int i);
+
+private:
     bool done[7];
 
 };

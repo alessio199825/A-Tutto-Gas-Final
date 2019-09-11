@@ -464,9 +464,6 @@ void Cars_Cpu::Start_PC() {
                 lineNode.push_back(Node);
                 Node.clear();
 
-
-                cout<<a<<endl;
-
             }
 
             mapNode.close();
@@ -512,9 +509,6 @@ void Cars_Cpu::Start_PC() {
                 lineNode.push_back(Node);
                 Node.clear();
 
-
-                cout<<a<<endl;
-
             }
 
             mapNode.close();
@@ -559,9 +553,6 @@ void Cars_Cpu::Start_PC() {
 
                 lineNode.push_back(Node);
                 Node.clear();
-
-
-                cout<<a<<endl;
 
             }
 
