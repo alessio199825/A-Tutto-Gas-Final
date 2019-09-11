@@ -17,7 +17,6 @@ A_Star::A_Star(){
 int A_Star::astar(int machine, int circuit) {
 
     if (!done[machine]) {                       // controllo sull'assegnazione dei nodi per l'esecuzione di A_star
-
         if (ChangeStart[machine]) {
             switch(circuit) {                   // assegnazione del nodo di partenza per A_star a seconda del circuito
                 case 1:                         // e della corrispondente macchina del computer
@@ -281,6 +280,7 @@ int A_Star::astar(int machine, int circuit) {
 
 #endif
             }
+
                 while (SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SEARCHING);
 
                 if (SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED) {
@@ -310,7 +310,6 @@ int A_Star::astar(int machine, int circuit) {
 
                                 x_start[vector_start[machine]] = x_end[vector_end[machine]];
                                 y_start[vector_start[machine]] = y_end[vector_end[machine]];
-
 
                                 vector_end[machine]++;
 
