@@ -15,7 +15,7 @@ bool Collision::CarPlayer_Menagement() {
 
     for(int i=0; i<5; i++) {
         if (PixelPerfectTest(S_CarBox1, S_CpuBox2[i]))
-            return true;
+            return true; 
     }
     return false;
 }
